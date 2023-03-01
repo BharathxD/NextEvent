@@ -1,6 +1,7 @@
 import { IDummyEvents } from "@/dummyData";
 import React, { Fragment } from "react";
-import EventItem from "./Event-Item";
+import EventItem from "./EventItem";
+import classes from "./EventList.module.css";
 
 interface Props {
   featured: IDummyEvents[];
@@ -8,15 +9,11 @@ interface Props {
 
 const EventList: React.FC<Props> = ({ featured }) => {
   return (
-    <Fragment>
+    <ul className={classes.list}>
       {featured.map((event) => {
-        return (
-          <li key={event.id}>
-            <EventItem event={event} />
-          </li>
-        );
+        return <EventItem key={event.id} event={event} />;
       })}
-    </Fragment>
+    </ul>
   );
 };
 

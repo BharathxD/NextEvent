@@ -3,11 +3,7 @@ import { getFeaturedEvents } from "@/dummyData";
 
 const HomePage = () => {
   const feturedEvents = getFeaturedEvents();
-  return (
-    <ul>
-      <EventList featured={feturedEvents} />
-    </ul>
-  );
+  return <EventList featured={feturedEvents} />;
 };
 
 export default HomePage;
