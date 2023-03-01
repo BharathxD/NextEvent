@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IDummyEvents } from "@/dummyData";
 import classes from "./EventItem.module.css";
+import Button from "../UI/Button";
 
 interface Props {
   event: IDummyEvents;
@@ -37,7 +38,7 @@ const EventItem: React.FC<Props> = ({ event }) => {
         </div>
       </div>
       <div className={classes.actions}>
-        <Link href={exploreLink}>Explore</Link>
+        <Button link={exploreLink}>Explore More</Button>
       </div>
       {/* For NextJS 13 <Link href={exploreLink}>
         <a className="">Explore</a>
