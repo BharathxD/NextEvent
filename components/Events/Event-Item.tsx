@@ -25,7 +25,12 @@ const EventItem: React.FC<Props> = ({ event }) => {
       <p>{description}</p>
       <address>{formattedAddress}</address>
       <p>{humanReadableDate}</p>
-      {/* <Image src={image} alt={title} width={800} height={500} /> */}
+      <Image
+        src={`http://localhost:3000/${image}`}
+        alt={title}
+        width={800}
+        height={500}
+      />
     </Fragment>
   );
 };
