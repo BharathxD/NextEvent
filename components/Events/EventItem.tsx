@@ -1,5 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import ArrowIcon from "../UI/ArrowIcon";
+import DateIcon from "../UI/DateIcon";
+import AddressIcon from "../UI/AddressIcon";
 import { IDummyEvents } from "@/dummyData";
 import classes from "./EventItem.module.css";
 import Button from "../UI/Button";
@@ -29,16 +31,29 @@ const EventItem: React.FC<Props> = ({ event }) => {
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{title}</h2>
-          <div className={classes.data}>
-            <time>{humanReadableDate}</time>
+          <div className={classes.date}>
+            <span className={classes.icon}>
+              <DateIcon />
+            </span>
+            <time>
+              <span>{humanReadableDate}</span>
+            </time>
           </div>
           <div className={classes.address}>
+            <span className={classes.icon}>
+              <AddressIcon />
+            </span>
             <address>{formattedAddress}</address>
           </div>
         </div>
       </div>
       <div className={classes.actions}>
-        <Button link={exploreLink}>Explore More</Button>
+        <Button link={exploreLink}>
+          <span>Explore More</span>
+          <span className={classes.icon}>
+            <ArrowIcon />
+          </span>
+        </Button>
       </div>
       {/* For NextJS 13 <Link href={exploreLink}>
         <a className="">Explore</a>
