@@ -1,7 +1,11 @@
+import { getFeaturedEvents } from "@/dummyData";
+
 const HomePage = () => {
+  const feturedEvents = getFeaturedEvents();
+  console.log(feturedEvents);
   return (
     <div>
-      <h1>This is a homepage</h1>
+      <ul></ul>
     </div>
   );
 };
