@@ -1,0 +1,34 @@
+import React from "react";
+import Button from "../UI/Button";
+import classes from "./EventSearch.module.css";
+
+const EventSearch: React.FC = () => {
+  const findEventHandler = () => {};
+  return (
+    <form className={classes.form}>
+      <div className={classes.controls}>
+        <div className={classes.control}>
+          <select>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+        <div className={classes.control}>
+          <select>
+            <option value="1">January</option>
+            <option value="2">Febuary</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+          </select>
+        </div>
+      </div>
+      <Button onClick={findEventHandler}>Find Events</Button>
+    </form>
+  );
+};
+
+export default EventSearch;

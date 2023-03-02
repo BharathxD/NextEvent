@@ -1,9 +1,18 @@
+import EventList from "@/components/Events/EventList";
+import EventSearch from "@/components/Events/EventSearch";
+import { getFeaturedEvents } from "@/dummyData";
+import { Fragment } from "react";
+
 const EventsPage = () => {
-    return (
-        <div>
-            <h1>Events Page</h1>
-        </div>
-    )
+  const feturedEvents = getFeaturedEvents();
+
+  return (
+    <Fragment>
+      <EventSearch />
+      <EventList featured={feturedEvents} />
+      );
+    </Fragment>
+  );
 };
 
 export default EventsPage;
