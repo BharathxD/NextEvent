@@ -49,14 +49,13 @@ export function getAllEvents() {
   return DUMMY_EVENTS;
 }
 
-export function getFilteredEvents(dateFilter: { year: string; month: string }) {
+export function getFilteredEvents(dateFilter: { year: number; month: number }) {
   const { year, month } = dateFilter;
 
   let filteredEvents = DUMMY_EVENTS.filter((event) => {
     const eventDate = new Date(event.date);
     return (
-      eventDate.getFullYear().toString() === year &&
-      eventDate.getMonth() === parseInt(month) - 1
+      eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
     );
   });
 

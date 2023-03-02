@@ -74,3 +74,8 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+:root {
+  --size-5: 5rem;
+  --color-grey-50: #2a2a2a
+}
