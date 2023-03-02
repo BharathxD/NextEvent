@@ -23,15 +23,16 @@ const EventLogistics: React.FC<Props> = ({
     year: "numeric",
   });
   const addressText = address.replace(", ", "\n");
+  console.log(humanReadableDate, addressText);
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <Image src={"/" + image} alt={imageAlt} />
+        <Image src={"/" + image} alt={imageAlt} width={800} height={500} />
         <ul className={classes.list}></ul>
-        <LogisticsItem Icon={DateIcon}>
+        <LogisticsItem icon={DateIcon}>
           <time>{humanReadableDate}</time>
         </LogisticsItem>
-        <LogisticsItem Icon={{ AddressIcon }}>
+        <LogisticsItem icon={AddressIcon}>
           <address>{addressText}</address>
         </LogisticsItem>
       </div>

@@ -8,3 +8,5 @@ interface Props {
 const EventContent: React.FC<Props> = ({ children }) => {
   return <section className={classes.content}>{children}</section>;
 };
+
+export default EventContent;

@@ -12,3 +12,5 @@ const EventSummary: React.FC<Props> = ({ title }) => {
     </section>
   );
 };
+
+export default EventSummary;
