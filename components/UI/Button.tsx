@@ -1,11 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { FormEvent } from "react";
 import classes from "./Button.module.css";
 
 interface Props {
   children: React.ReactNode;
   link?: string;
-  onClick?: () => void;
+  onClick?: (arg1: FormEvent) => void;
 }
 
 const Button: React.FC<Props> = ({ children, link, onClick }) => {

@@ -1,14 +1,30 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import Button from "../UI/Button";
 import classes from "./EventSearch.module.css";
+import { useRef } from "react";
 
-const EventSearch: React.FC = () => {
-  const findEventHandler = () => {};
+interface Props {
+  onSearch: (year: string, month: string) => void;
+}
+
+const EventSearch: React.FC<Props> = ({ onSearch }) => {
+  const yearRef = useRef<HTMLSelectElement>(null);
+  const monthRef = useRef<HTMLSelectElement>(null);
+  const findEventHandler = (event: FormEvent) => {
+    event.preventDefault();
+    const year = yearRef.current!.value;
+    const month = monthRef.current!.value;
+    if (!year && !month) {
+      console.log("invalid");
+      return;
+    }
+    onSearch(year, month);
+  };
   return (
     <form className={classes.form}>
       <div className={classes.controls}>
         <div className={classes.control}>
-          <select>
+          <select ref={yearRef}>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
@@ -16,7 +32,7 @@ const EventSearch: React.FC = () => {
           </select>
         </div>
         <div className={classes.control}>
-          <select>
+          <select ref={monthRef}>
             <option value="1">January</option>
             <option value="2">Febuary</option>
             <option value="3">March</option>

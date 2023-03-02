@@ -5,10 +5,12 @@ import { Fragment } from "react";
 
 const EventsPage = () => {
   const feturedEvents = getFeaturedEvents();
-
+  const onSearch = (year: string, month: string) => {
+    console.log(year, month);
+  };
   return (
     <Fragment>
-      <EventSearch />
+      <EventSearch onSearch={onSearch} />
       <EventList featured={feturedEvents} />
       );
     </Fragment>
