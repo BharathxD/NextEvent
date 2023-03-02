@@ -2,6 +2,7 @@ import AddressIcon from "../UI/AddressIcon";
 import DateIcon from "../UI/DateIcon";
 import Image from "next/image";
 import classes from "./EventLogistics.module.css";
+import LogisticsItem from "./LogisticsItem";
 
 interface Props {
   date: string;
@@ -25,8 +26,17 @@ const EventLogistics: React.FC<Props> = ({
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <Image src={'/'+image} alt={imageAlt}/>
+        <Image src={"/" + image} alt={imageAlt} />
+        <ul className={classes.list}></ul>
+        <LogisticsItem Icon={DateIcon}>
+          <time>{humanReadableDate}</time>
+        </LogisticsItem>
+        <LogisticsItem Icon={{ AddressIcon }}>
+          <address>{addressText}</address>
+        </LogisticsItem>
       </div>
     </section>
   );
 };
+
+export default EventLogistics;

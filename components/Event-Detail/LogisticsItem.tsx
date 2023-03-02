@@ -16,3 +16,5 @@ const LogisticsItem: React.FC<Props> = ({ children, Icon }) => {
     </li>
   );
 };
+
+export default LogisticsItem;
