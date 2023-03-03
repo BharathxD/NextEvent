@@ -1,11 +1,6 @@
 import { useRouter } from "next/router";
 import EventList from "@/components/Events/EventList";
-import {
-  IEvents,
-  getAllEvents,
-  getEventById,
-  getFilteredEvents,
-} from "@/helpers/APIUtils";
+import { IEvents, getFilteredEvents } from "@/helpers/APIUtils";
 import { FC } from "react";
 
 interface Props {
@@ -15,6 +10,9 @@ interface Props {
 
 const FilteredEvents: FC<Props> = ({ hasError, events }) => {
   const router = useRouter();
+  if (hasError) {
+    return <p>Error fetching events</p>;
+  }
   if (!events || events.length === 0) {
     return <p>No events found</p>;
   }
@@ -23,16 +21,6 @@ const FilteredEvents: FC<Props> = ({ hasError, events }) => {
       <EventList featured={events} />
     </div>
   );
-};
-
-export const getStaticProps = async (context: { params: { id: string } }) => {
-  const event = await getEventById(context.params.id);
-  return {
-    props: {
-      selectedEvent: event,
-    },
-    revalidate: 1800,
-  };
 };
 
 export const getServerSideProps = async (context: { params: any }) => {
@@ -51,7 +39,8 @@ export const getServerSideProps = async (context: { params: any }) => {
     month: month,
   });
   return {
-    props: { evetns: filteredEvents },
+    props: { events: filteredEvents },
+    revalidate: 3600,
   };
 };
 
