@@ -1,6 +1,5 @@
 import EventList from "@/components/Events/EventList";
 import EventSearch from "@/components/Events/EventSearch";
-import { getFeaturedEvents } from "@/dummyData";
 import { IEvents, getAllFeaturedEvents } from "@/helpers/APIUtils";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
@@ -25,6 +24,7 @@ const HomePage: React.FC<Props> = ({ featuredEvents }) => {
 };
 
 export const getStaticProps = async () => {
+  // Pre-Rendering the Data
   const featuredEvents = await getAllFeaturedEvents();
   return {
     props: {
