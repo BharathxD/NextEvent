@@ -9,7 +9,7 @@ interface Data {
 
 export const getFeaturedEvents = async () => {
   const allEvents = await getAllEvents();
-  return events.filter((event) => event.isFeatured);
+  return allEvents.filter((event) => event.isFeatured);
 };
 
 export const getAllEvents = async () => {
