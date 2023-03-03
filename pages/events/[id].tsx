@@ -1,29 +1,47 @@
 import EventContent from "@/components/Event-Detail/EventContent";
 import EventLogistics from "@/components/Event-Detail/EventLogistics";
 import EventSummary from "@/components/Event-Detail/EventSummary";
-import { getEventById } from "@/dummyData";
-import { useRouter } from "next/router";
+import { IEvents, getAllEvents, getEventById } from "@/helpers/APIUtils";
 
-const EventDetail = () => {
-  const router = useRouter();
-  const eventID = router.query.id || "";
-  const event = getEventById(eventID.toString());
-  if (!event) {
+interface Props {
+  selectedEvent: IEvents;
+}
+
+const EventDetail: React.FC<Props> = ({ selectedEvent }) => {
+  if (!selectedEvent) {
     return <p>No events found.</p>;
   }
-
   return (
     <div>
-      <EventSummary title={event.title} />
+      <EventSummary title={selectedEvent.title} />
       <EventLogistics
-        date={event.date}
-        address={event.location}
-        image={event.image}
-        imageAlt={event.title}
+        date={selectedEvent.date}
+        address={selectedEvent.location}
+        image={selectedEvent.image}
+        imageAlt={selectedEvent.title}
       ></EventLogistics>
-      <EventContent>{event.description}</EventContent>
+      <EventContent>{selectedEvent.description}</EventContent>
     </div>
   );
+};
+
+export const getStaticProps = async (context: { params: { id: string } }) => {
+  const event = await getEventById(context.params.id);
+  return {
+    props: {
+      selectedEvent: event,
+    },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const events = await getAllEvents();
+  const paths = events.map((event) => ({ params: { id: event.id } }));
+  debugger;
+  return {
+    paths: paths,
+    fallback: false,
+  };
 };
 
 export default EventDetail;
