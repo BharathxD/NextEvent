@@ -1,14 +1,19 @@
 import EventList from "@/components/Events/EventList";
 import EventSearch from "@/components/Events/EventSearch";
-import { getAllFeaturedEvents } from "@/helpers/APIUtils";
+import {
+  IEvents,
+  getAllEvents,
+  getAllFeaturedEvents,
+} from "@/helpers/APIUtils";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import { FC, Fragment } from "react";
 
+interface Props {
+  events: IEvents[];
+}
 
-
-const EventsPage = async () => {
+const EventsPage: FC<Props> = ({ events }) => {
   const router = useRouter();
-  const featuredEvents = await getAllFeaturedEvents();
   const onSearch = (year: string, month: string) => {
     const fullPath = `/events/${year}/${month}`;
     router.push(fullPath);
@@ -16,12 +21,19 @@ const EventsPage = async () => {
   return (
     <Fragment>
       <EventSearch onSearch={onSearch} />
-      <EventList featured={featuredEvents} />
+      <EventList featured={events} />
       );
     </Fragment>
   );
 };
 
-
+export const getStaticProps = async () => {
+  const event = await getAllEvents();
+  return {
+    props: {
+      events: event,
+    },
+  };
+};
 
 export default EventsPage;

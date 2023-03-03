@@ -1,6 +1,6 @@
-
 import { useRouter } from "next/router";
 import EventList from "@/components/Events/EventList";
+import { getAllEvents } from "@/helpers/APIUtils";
 
 const FilteredEvents = () => {
   const router = useRouter();
@@ -27,6 +27,26 @@ const FilteredEvents = () => {
       <EventList featured={filteredEvents} />
     </div>
   );
+};
+
+export const getStaticProps = async (context: { params: { id: string } }) => {
+  const event = await getEventById(context.params.id);
+  return {
+    props: {
+      selectedEvent: event,
+    },
+    revalidate: 1800,
+  };
+};
+
+export const getStaticPaths = async () => {
+  const events = await getAllEvents();
+  const paths = events.map((event) => ({ params: { id: event.id } }));
+  debugger;
+  return {
+    paths: paths,
+    fallback: true,
+  };
 };
 
 export default FilteredEvents;

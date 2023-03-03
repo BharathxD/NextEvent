@@ -8,19 +8,20 @@ interface Props {
 }
 
 const EventDetail: React.FC<Props> = ({ selectedEvent }) => {
-  if (!selectedEvent) {
-    return <p>No events found.</p>;
+  const event = selectedEvent;
+  if (!event) {
+    return <p>Loading...</p>;
   }
   return (
     <div>
-      <EventSummary title={selectedEvent.title} />
+      <EventSummary title={event.title} />
       <EventLogistics
-        date={selectedEvent.date}
-        address={selectedEvent.location}
-        image={selectedEvent.image}
-        imageAlt={selectedEvent.title}
+        date={event.date}
+        address={event.location}
+        image={event.image}
+        imageAlt={event.title}
       ></EventLogistics>
-      <EventContent>{selectedEvent.description}</EventContent>
+      <EventContent>{event.description}</EventContent>
     </div>
   );
 };
@@ -31,6 +32,7 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
     props: {
       selectedEvent: event,
     },
+    revalidate: 1800,
   };
 };
 
@@ -40,7 +42,7 @@ export const getStaticPaths = async () => {
   debugger;
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
