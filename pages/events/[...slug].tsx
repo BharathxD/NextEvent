@@ -3,6 +3,7 @@ import EventList from "@/components/Events/EventList";
 import { IEvents, getFilteredEvents } from "@/helpers/APIUtils";
 import { FC } from "react";
 import useSWR, { SWRResponse } from "swr";
+import Head from "next/head";
 
 interface Props {
   hasError: boolean;
@@ -41,6 +42,9 @@ const FilteredEvents: FC<Props> = ({ hasError, events }) => {
   }
   return (
     <div>
+      <Head>
+        <title>Found {events.length} events</title>
+      </Head>
       <EventList featured={events} />
     </div>
   );
