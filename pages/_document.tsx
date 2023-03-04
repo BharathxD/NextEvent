@@ -3,14 +3,15 @@ import Document, { Html, Main, NextScript, Head } from "next/document";
 class MyDocument extends Document {
   render() {
     return (
-      <html>
-        <Head />
+      <Html lang="en-US">
+        <Main />
         <body>
-          <main>
-            <NextScript />
-          </main>
+          <Head />
+          <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
+
+export default MyDocument;
