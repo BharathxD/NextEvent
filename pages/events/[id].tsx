@@ -2,6 +2,7 @@ import EventContent from "@/components/Event-Detail/EventContent";
 import EventLogistics from "@/components/Event-Detail/EventLogistics";
 import EventSummary from "@/components/Event-Detail/EventSummary";
 import { IEvents, getAllEvents, getEventById } from "@/helpers/APIUtils";
+import Head from "next/head";
 
 interface Props {
   selectedEvent: IEvents;
@@ -14,6 +15,9 @@ const EventDetail: React.FC<Props> = ({ selectedEvent }) => {
   }
   return (
     <div>
+      <Head>
+        <title>{event.title}</title>
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
