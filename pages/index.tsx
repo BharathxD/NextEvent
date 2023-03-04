@@ -1,4 +1,6 @@
 import EventList from "@/components/Events/EventList";
+import Head from "next/head";
+import Link from "next/link";
 import EventSearch from "@/components/Events/EventSearch";
 import { IEvents, getAllFeaturedEvents } from "@/helpers/APIUtils";
 import { useRouter } from "next/router";
@@ -16,6 +18,9 @@ const HomePage: React.FC<Props> = ({ featuredEvents }) => {
   };
   return (
     <Fragment>
+      <Head>
+        <title>NextJS Events</title>
+      </Head>
       <EventSearch onSearch={onSearch} />
       <EventList featured={featuredEvents} />
       );
