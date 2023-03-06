@@ -1,4 +1,5 @@
 import TEvents from "@/types/Events.types";
+import TransformEvent from "./TransformEvents";
 
 export const getAllFeaturedEvents = async () => {
   const allEvents = await getAllEvents();
@@ -10,17 +11,7 @@ export const getAllEvents = async () => {
     "https://star-wars-f4c01-default-rtdb.firebaseio.com/Events.json"
   );
   const data: TEvents[] = await response.json();
-  let events = Object.entries(data).map(
-    ([id, { title, description, image, isFeatured, location, date }]) => ({
-      id,
-      title,
-      description,
-      image,
-      isFeatured,
-      location,
-      date,
-    })
-  );
+  const events: TEvents[] = TransformEvent(data);
   return events;
 };
 
