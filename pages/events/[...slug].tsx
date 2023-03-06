@@ -5,6 +5,7 @@ import { FC } from "react";
 import useSWR, { SWRResponse } from "swr";
 import Head from "next/head";
 import TEvents from "@/types/Events.types";
+import TransformEvent from "@/helpers/TransformEvents";
 
 interface Props {
   hasError: boolean;
@@ -18,17 +19,7 @@ const FilteredEvents: FC<Props> = ({ hasError, events }) => {
   );
   useEffect(() => {
     if (data) {
-      const events: TEvents[] = Object.entries(data).map(
-        ([id, { title, description, image, isFeatured, location, date }]) => ({
-          id,
-          title,
-          description,
-          image,
-          isFeatured,
-          location,
-          date,
-        })
-      );
+      const events: TEvents[] = TransformEvent(data);
       setLoadedEvents(events);
     }
   }, [data]);

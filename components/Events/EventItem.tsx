@@ -2,12 +2,12 @@ import Image from "next/image";
 import ArrowIcon from "../UI/ArrowIcon";
 import DateIcon from "../UI/DateIcon";
 import AddressIcon from "../UI/AddressIcon";
-import { IDummyEvents } from "@/dummyData";
 import classes from "./EventItem.module.css";
 import Button from "../UI/Button";
+import TEvents from "@/types/Events.types";
 
 interface Props {
-  event: IDummyEvents;
+  event: TEvents;
 }
 
 const EventItem: React.FC<Props> = ({ event }) => {
