@@ -1,16 +1,15 @@
 import EventList from "@/components/Events/EventList";
 import EventSearch from "@/components/Events/EventSearch";
 import {
-  IEvents,
   getAllEvents,
-  getAllFeaturedEvents,
 } from "@/helpers/APIUtils";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC, Fragment } from "react";
+import TEvents from "@/types/Events.types";
 
 interface Props {
-  events: IEvents[];
+  events: TEvents[];
 }
 
 const EventsPage: FC<Props> = ({ events }) => {

@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import EventList from "@/components/Events/EventList";
-import { IEvents, getFilteredEvents } from "@/helpers/APIUtils";
+import { getFilteredEvents } from "@/helpers/APIUtils";
 import { FC } from "react";
 import useSWR, { SWRResponse } from "swr";
 import Head from "next/head";
+import TEvents from "@/types/Events.types";
 
 interface Props {
   hasError: boolean;
-  events: IEvents[];
+  events: TEvents[];
 }
 
 const FilteredEvents: FC<Props> = ({ hasError, events }) => {
-  const [getLoadedEvents, setLoadedEvents] = useState<IEvents[]>();
-  const { data, error }: SWRResponse<IEvents[], string, any> = useSWR(
+  const [getLoadedEvents, setLoadedEvents] = useState<TEvents[]>();
+  const { data, error }: SWRResponse<TEvents[], string, any> = useSWR(
     "https://star-wars-f4c01-default-rtdb.firebaseio.com/Events.json"
   );
   useEffect(() => {
     if (data) {
-      const events: IEvents[] = Object.entries(data).map(
+      const events: TEvents[] = Object.entries(data).map(
         ([id, { title, description, image, isFeatured, location, date }]) => ({
           id,
           title,

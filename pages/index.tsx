@@ -2,12 +2,13 @@ import EventList from "@/components/Events/EventList";
 import Head from "next/head";
 import Link from "next/link";
 import EventSearch from "@/components/Events/EventSearch";
-import { IEvents, getAllFeaturedEvents } from "@/helpers/APIUtils";
+import { getAllFeaturedEvents } from "@/helpers/APIUtils";
+import TEvents from "@/types/Events.types";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 
 interface Props {
-  featuredEvents: IEvents[];
+  featuredEvents: TEvents[];
 }
 
 const HomePage: React.FC<Props> = ({ featuredEvents }) => {

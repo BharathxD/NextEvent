@@ -1,11 +1,12 @@
 import EventContent from "@/components/Event-Detail/EventContent";
 import EventLogistics from "@/components/Event-Detail/EventLogistics";
 import EventSummary from "@/components/Event-Detail/EventSummary";
-import { IEvents, getAllEvents, getEventById } from "@/helpers/APIUtils";
+import { getAllEvents, getEventById } from "@/helpers/APIUtils";
 import Head from "next/head";
+import TEvents from "@/types/Events.types";
 
 interface Props {
-  selectedEvent: IEvents;
+  selectedEvent: TEvents;
 }
 
 const EventDetail: React.FC<Props> = ({ selectedEvent }) => {
